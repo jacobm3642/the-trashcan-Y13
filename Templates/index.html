@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../Static/Js/main.js" type="text/javascript"></script>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link href="../Static/CSS/Style.css" rel="stylesheet" type="text/css"> 
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row gray" id="navbar">
+                <div class="col-1">
+                    <h1>icon</h1>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-10"></div>
+                    </div>
+                </div>
+                <div class="col-1" id="quitbuttonbox">
+                    <button id="quitbutton" onclick="quit()">quit</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="row" id="topofbar">
+                        <label for="places">Places:</label>
+                        <select name="places" id="places">
+                          <option value="0">Leeston</option>
+                          <option value="1">Southbridge</option>
+                          <option value="2">Place 3</option>
+                          <option value="3">Place 4</option>
+                        </select> 
+                        <div class="row">   
+                            <div class="col-12" id="buttons">
+                                <button onclick="addPlace()">Add</button>
+                                <button onclick="clearList()">reset</button>
+                                <button onclick="calFuelAndDis()">cal</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container" id="listarea">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8" id="mapbox">
+                    <div id='map' onload="" style='width: 100%; height: 85vh;'></div>
+                    <script>    
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiYmlwb2xhcmJlYXI4NjUiLCJhIjoiY2twYXl2MTRjMGVwNzJwbzRzbDlkM3lzZiJ9.gtCNXPoaPtqe5-UaudN5Ow';
+                        var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/mapbox/streets-v11'
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" id="leftlowerbox">
+                    <div class="container">
+                        <div class="row gray" id="fuel">
+                            <h1 class="title">fuel</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" id="rightlowerbox">
+                    <div class="container">
+                        <div class="container">
+                            <div class="row gray" id="fuel">
+                                <h1 class="title">Distince</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <footer>
+    </footer>
+</html>
