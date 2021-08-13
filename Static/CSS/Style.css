@@ -1,3 +1,8 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr 60em 1fr ;
+    grid-template-rows: 10vh 90vh 80vh 10vh;
+}
 button {
     transition-duration: 0.4s;
     background-color: white;
@@ -17,9 +22,6 @@ h1,h2{
 .var{
     visibility: hidden;
 }
-.gray{
-    background-color: grey;
-}
 .place{
     padding: 0.5rem;
     width: 5rem;
@@ -32,6 +34,23 @@ h1,h2{
     border-radius: 2rem;
     background: gray;
     padding: 0.5rem; 
+}
+#mapandsidebar{
+    display: grid;
+    grid-column: 2/3;
+    grid-template-columns: 1fr 10em 8fr 1fr;
+    grid-template-rows: 2/3;
+}
+#bottombox{
+    grid-row: 3/4;
+}
+#sidebar{
+    grid-column: 2/3;
+}
+#navbar{
+    grid-column: 1/4;
+    grid-row: 1/2;
+    background-color: gray;
 }
 #buttons{
     padding: 00.25rem;
@@ -54,8 +73,10 @@ h1,h2{
     padding: 5rem;
 }
 #mapbox{
+    grid-column: 3/4;
     padding: 0.5rem;
 }
-#quitbuttonbox{
+#quitbutton{
     padding: 1rem;
+    align-self: right;
 }
