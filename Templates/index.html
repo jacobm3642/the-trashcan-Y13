@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title></title>
         <script src="../Static/Js/main.js"></script>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <link href="../Static/CSS/Style.css" rel="stylesheet" type="text/css"> 
@@ -8,44 +9,48 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
     </head>
     <body>
-        <div id="navbar">
-            <h1>icon</h1>
-            <button id="quitbutton" onclick="quit()">quit</button>
+        <div class="grid">
+            <header class="page-header">
+                <div class="content menu-bar">
+                    <a class="title">Site Title</a>
+                    <button class="buttons" onclick="quit()">Quit</button>
+                    <button class="buttons">link 2</button>
+                    <button class="buttons">link 3</button>
+                </div>
+            </header>
+            <aside class="page-leftbar">
+                <div class="content">
+                    <div id="topofbar">
+                        <label for="places">Places:</label>
+                        <select name="places" id="places">
+                          <option value="0">Leeston</option>
+                          <option value="1">Southbridge</option>
+                          <option value="2">Place 3</option>
+                          <option value="3">Place 4</option>
+                      </select>
+                        <div id="buttonset">
+                            <button onclick="addPlace()">Add</button>
+                            <button onclick="clearList()">reset</button>
+                            <button onclick="calFuelAndDis()">cal</button>
+                        </div>
+                        <div id="listarea">
+    
+                        </div>
+                    </div>
+            </aside>
+            <main class="page-main">
+                <div class="content">
+                    <div id="mapbox">
+                        <img src="https://via.placeholder.com/900x350">
+                    </div>
+                </div>
+            </main>
+            <footer class="page-footer">
+                <div class="content">
+                    <p>Footer</p>
+                </div>
+            </footer>
         </div>
-        <div id="mapandsidebar">
-            <div id="topofbar">
-                <label for="places">Places:</label>
-                <select name="places" id="places">
-                    <option value="0">Leeston</option>
-                    <option value="1">Southbridge</option>
-                    <option value="2">Place 3</option>
-                    <option value="3">Place 4</option>
-                </select>  
-                <div id="buttons">
-                    <button onclick="addPlace()">Add</button>
-                    <button onclick="clearList()">reset</button>
-                    <button onclick="calFuelAndDis()">cal</button>=
-                </div>
-                <div id="listarea">
-
-                </div>
-            </div>
-            <div id="mapbox">
-                <img src="https://via.placeholder.com/900x350">
-            </div>
-        </div>
-        <div id="bottombox">
-            <div id="leftlowerbox">
-                <div id="fuel">
-                    <h1 class="title">fuel</h1>
-                </div>
-            </div>
-            <div id="rightlowerbox">
-                <div class="gray" id="Distince">
-                    <h1 class="title">Distince</h1>
-                </div>
-            </div>   
-        </div>    
     </body>
     <footer>
     </footer>

@@ -1,8 +1,5 @@
-body{
-    display: grid;
-    grid-template-columns: 1fr 60em 1fr ;
-    grid-template-rows: 10vh 90vh 80vh 10vh;
-}
+/*old reliable*/
+
 button {
     transition-duration: 0.4s;
     background-color: white;
@@ -22,61 +19,73 @@ h1,h2{
 .var{
     visibility: hidden;
 }
-.place{
-    padding: 0.5rem;
-    width: 5rem;
-}
-.imgplace{
-    height: 2rem;
-    width: 3rem;
-}
-.rcorners1 {
-    border-radius: 2rem;
-    background: gray;
-    padding: 0.5rem; 
-}
-#mapandsidebar{
+
+/*grid formating stuff*/
+
+.grid {
     display: grid;
-    grid-column: 2/3;
-    grid-template-columns: 1fr 10em 8fr 1fr;
-    grid-template-rows: 2/3;
-}
-#bottombox{
-    grid-row: 3/4;
-}
-#sidebar{
-    grid-column: 2/3;
-}
-#navbar{
-    grid-column: 1/4;
-    grid-row: 1/2;
+    grid-template-columns: 50vh auto;
+    grid-template-rows: 5vw minmax(20vw, auto) auto;
+    grid-template-areas: 
+      'header header'
+      'leftbar main'
+      'footer footer';
+    column-gap: 5vh;
+    row-gap: 5vw;
+  }
+  
+  .page-header {
+    grid-area: header;
+  }
+  
+  .page-leftbar {
+    grid-area: leftbar;
+  }
+  
+  .page-main {
+    grid-area: main;
+  }
+  
+  .page-footer {
+    grid-area: footer;
+  }
+  
+  .content {
+    color: #242424;
     background-color: gray;
-}
-#buttons{
-    padding: 00.25rem;
-}
-#topOfBar{
-    background-color: red;
-    padding: 1rem;
-}
-#xbox{
-    padding-top: 0.25rem;
-    font-weight: bold;
-}
-#xbox:hover{
-    color: red;
-}
-#leftlowerbox{
-    padding: 5rem;
-}
-#rightlowerbox{
-    padding: 5rem;
-}
-#mapbox{
-    grid-column: 3/4;
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+    height: 100%;
     padding: 0.5rem;
-}
-#quitbutton{
-    padding: 1rem;
-    align-self: right;
-}
+  }
+  
+/*navbar stuff*/
+  
+  .menu-bar {
+    background-color: gray;
+  }
+  
+  .buttons {
+    color: black;
+    background-color: transparent;
+    font-size: 1rem;
+    box-sizing: border-box;
+    padding: 1vw 2vw;
+    float: right;
+    margin-left: 1rem;
+  }
+  
+  .title {
+    font-weight: 600;
+    color: black;
+    background-color: transparent;
+    font-size: 1rem;
+    float: left;
+    box-sizing: border-box;
+    padding: 1vw 2vw;
+  }
+  
+  .buttons:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }

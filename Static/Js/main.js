@@ -17,7 +17,7 @@ function addPlace() {
 };
 
 function makeTag(place, photoLink, number) {
-    tag = "<div class=\"row\" id=\"" + number + "\"><div class=\"container place\"><div class=\"row rcorners1\"><div class=\"col-2\"><img src=\"" + photoLink + "\" alt=\"" + place + "\" class=\"imgplace\"></div><div class=\"col-8\"><h6>" + place + "</h6></div><div class=\"col-2\"><div class=\"container\" id=\"xbox\"><span id=\"x\" onclick=\"removeTag(" + number + ")\">X</span></div></div></div></div></div>"
+    tag = ""
     return tag
 };
 
