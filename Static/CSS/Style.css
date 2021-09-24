@@ -89,3 +89,15 @@ h1,h2{
   .buttons:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
+
+  .item{
+    background-color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    height: 2rem;
+  }
+  .itemphoto{
+    height: 2rem;
+    width: 2rem;
+    float: left;
+  }
