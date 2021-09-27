@@ -101,3 +101,14 @@ h1,h2{
     width: 2rem;
     float: left;
   }
+  .xbox{
+    float: right;
+    padding-right: 0.125rem;
+  }
+  .xbox:hover{
+    color: red;
+  }
+  .name{
+    border: 1rem;
+    color: black;
+  }

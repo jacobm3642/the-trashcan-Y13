@@ -68,15 +68,35 @@ function calFuelAndDis() {
 };
 
 function save(){
-
+    input =  "<br/><label for=\"save/load\" id=\"inputlabel\">load</label><input type=\"text\" id=\"save/load\"><button id=\"save/loadbutton\" onclick=\"savePlaces()\"></button>"
+    document.getElementById("entry").innerHTML = input 
 };
 
-function savePlaces(key){
+function load(){
+    input =  "<br/><label for=\"save/load\" id=\"inputlabel\">load</label><input type=\"text\" id=\"save/load\"><button id=\"save/loadbutton\" onclick=\"loadPlaces()\"></button>"
+    document.getElementById("entry").innerHTML = input 
+};
+
+function savePlaces(){
+    key = document.getElementById("save/load").value
     place = JSON.stringify(cleanplacesinorder())
     localStorage.setItem(key, place)
 };
 
-function retrivePlaces(key){
+function loadPlaces(){
+    retrevedPlaces = retrivePlaces();
+    i = 0;
+    retrivePlaceslenth = retrevedPlaces.length
+    while(i < retrivePlaceslenth) {
+        addPlace(retrevedPlaces[i],"../Static/img/external-deuhiufsguiyvgdsiufer.jpg",retrevedPlaces[i] )
+        i += 1
+    };
+    console.log(retrevedPlaces)
+};
+
+function retrivePlaces(){
+    key = document.getElementById("save/load").value
     storedPlace = localStorage.getItem(key)
     storedPlaces = JSON.parse(storedPlace)
+    return storedPlaces
 };
