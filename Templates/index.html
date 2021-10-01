@@ -3,6 +3,7 @@
     <head>
         <title></title>
         <script src="../Static/Js/main.js"></script>
+        <script src="../Static/Js/ears.js"></script>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <link href="../Static/CSS/Style.css" rel="stylesheet" type="text/css"> 
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
@@ -13,9 +14,9 @@
             <header class="page-header">
                 <div class="content menu-bar">
                     <a class="title">Site Title</a>
-                    <button class="buttons" onclick="quit()">Quit</button>
-                    <button class="buttons" onclick="save()">save</button>
-                    <button class="buttons" onclick="load()">load</button>
+                    <button class="buttons" id="quit" onclick="">Quit</button>
+                    <button class="buttons" id="save">save</button>
+                    <button class="buttons" id="load">load</button>
                 </div>
                 <div id="entry">
                 </div>
@@ -53,18 +54,11 @@
                             <option value="25">Westport</option>
                       </select>
                         <div id="buttonset">
-                            <button onclick="addPlaceWithDropDown()">Add</button>
-                            <button onclick="clearList()">reset</button>
-                            <button onclick="calFuelAndDis()">cal</button>
+                            <button id="addPlaceButton">Add</button>
+                            <button id="clearListButton">reset</button>
+                            <button id="calFuelAndDisButton">cal</button>
                         </div>
-                        <div id="listarea">
-                            <div class="item">
-                                <img class="itemphoto" src="../Static/img/external-deuhiufsguiyvgdsiufer.jpg" alt="">
-                                <div class="name">
-                                    <p class="name">Te Anau<a class="xbox">x</a></p>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="listarea"></div>
                     </div>
             </aside>
             <main class="page-main">
