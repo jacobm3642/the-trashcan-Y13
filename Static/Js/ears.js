@@ -1,3 +1,8 @@
+/** 
+ *  Author: jacob miller
+ *  Last edited: 10/17/21 (mm/dd/yy)
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
     /*
         When the document has been loaded:

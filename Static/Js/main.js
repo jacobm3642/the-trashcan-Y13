@@ -18,7 +18,7 @@ function addPlaceWithDropDown(){
 function addPlace(number) {
     // tells the make tag function what name and img shuod be on the tag that is added to the listarea
     document.getElementById("listarea").innerHTML += makeTag(places[number], "https://via.placeholder.com/900x350")
-    // adds the number to the places in order aray to keep trak of it 
+    // adds the number to the places in order array to keep trak of it 
     placesInOrder.push(number)
     // adds one to listNum so it keeps trak of the number of places that have bean added 
     listNum += 1
@@ -54,8 +54,8 @@ function quit() {
     window.close()
 };
 
-function cleanplacesinorder() {
-    // makes a new arry for the places without null
+function cleanPlacesInOrder() {
+    // makes a new array for the places without null
     placesInOrderFinal = []
     // makes a vareabule that has the orignal lenth of placesInOrder
     let items = placesInOrder.length
@@ -77,19 +77,29 @@ function cleanplacesinorder() {
 
 function calFuelAndDis() {
     // asks for an array of placesInOrder with no nulls
-    cleanedPlacesInOrder = cleanplacesinorder()
+    cleanedPlacesInOrder = cleanPlacesInOrder()
     // makes i for iterating through a list of numbers
     i = 0
+    // makes a distance var to keep trak of the total
     distance = 0
+    // start a while loop to iterate through the places
     while (i < (cleanedPlacesInOrder.length - 1)){
+        // defs cPlace as the ith item in cleanedPlacesInOrder
         cPlace = cleanedPlacesInOrder[i]
+        // defs nPlace as the (i + 1)th item in cleanedPlacesInOrder
         nPlace = cleanedPlacesInOrder[(i+1)]
+        // gets the ith place set of distances
         disSet = distances[cPlace]
+        // gets the (i+1)th place dis form the ith place set of distances
         dis = disSet[nPlace]
+        // adds the distance to the total 
         distance += dis
+        // adds one to i
         i += 1
-        console.log(distance)
     }
+    disSet2 = distances[cleanedPlacesInOrder[(cleanedPlacesInOrder.length - 1)]]
+    distance += disSet2[0]
+    console.log(distance)
 };
 
 function save(){
@@ -104,7 +114,7 @@ function load(){
 
 function savePlaces(){
     key = document.getElementById("save/load").value
-    place = JSON.stringify(cleanplacesinorder())
+    place = JSON.stringify(cleanPlacesInOrder())
     localStorage.setItem(key, place)
     alert("saved")
 };
