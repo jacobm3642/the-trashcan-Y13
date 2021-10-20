@@ -1,6 +1,6 @@
 /** 
  *  Author: jacob miller
- *  Last edited: 10/17/21 (mm/dd/yy)
+ *  Last edited: 10/21/21 (mm/dd/yy)
  */
 
 places = ["Alexandra", "Blenheim", "Christchurch", "Collingwood", "Cromwell", "Dunedin", "Franz Josef", "Geraldine", "Gore", "Greymouth", "Haast", "Invercargill", "Kaikoura", "Lake Tekapo", "Milford Sound", "Mount Cook", "Murchison", "Nelson", "Oamaru", "Picton", "Queenstown", "Te Anau", "Timaru", "Twizel", "Wanaka", "Westport"]
@@ -102,6 +102,9 @@ function cleanPlacesInOrder() {
 };
 
 function calFuelAndDis() {
+    fuelPerKm = Number(document.getElementById("fuelperkm").value)
+    priceOfFuel = Number(document.getElementById("priceoffuel").value)
+    document.getElementById("footertextarea").innerHTML = ""
     // asks for an array of placesInOrder with no nulls
     cleanedPlacesInOrder = cleanPlacesInOrder()
     cleanedPlacesInOrder.push(cleanedPlacesInOrder[0])
@@ -125,8 +128,24 @@ function calFuelAndDis() {
         i += 1
         console.log(cPlace,nPlace,disSet,dis,distance)
     }
-    document.getElementById("footer").innerHTML = "the distance between the places given is"+distance+"km"
-
+    document.getElementById("footertextarea").innerHTML += "<br/>the distance between the places given is "+distance+" km"
+    distance = Number(distance)
+    console.log(fuelPerKm,priceOfFuel)
+    if(fuelPerKm != 0){
+        fuel = distance*fuelPerKm
+        document.getElementById("footertextarea").innerHTML += "</br>the amount of fuel used is " +fuel+" liters"
+        if(priceOfFuel != 0){
+            cost = fuel*priceOfFuel
+            document.getElementById("footertextarea").innerHTML += "</br>the cost will be " +cost+" dollars"
+        }
+        else{
+            alert("you need to enter a number for price of fuel for me to calulate it")
+        }
+    }
+    else{
+        alert("you need to enter a number for fuel uses per km for me to calulate it")
+    }
+    // this is so jasmine can read the cal number
     return distance
 };
 
