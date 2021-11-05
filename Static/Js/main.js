@@ -1,10 +1,11 @@
 /** 
  *  Author: jacob miller
- *  Last edited: 10/21/21 (mm/dd/yy)
+ *  Last edited: 10/22/21 (mm/dd/yy)
  */
 
-places = ["Alexandra", "Blenheim", "Christchurch", "Collingwood", "Cromwell", "Dunedin", "Franz Josef", "Geraldine", "Gore", "Greymouth", "Haast", "Invercargill", "Kaikoura", "Lake Tekapo", "Milford Sound", "Mount Cook", "Murchison", "Nelson", "Oamaru", "Picton", "Queenstown", "Te Anau", "Timaru", "Twizel", "Wanaka", "Westport"]
+const places = ["Alexandra", "Blenheim", "Christchurch", "Collingwood", "Cromwell", "Dunedin", "Franz Josef", "Geraldine", "Gore", "Greymouth", "Haast", "Invercargill", "Kaikoura", "Lake Tekapo", "Milford Sound", "Mount Cook", "Murchison", "Nelson", "Oamaru", "Picton", "Queenstown", "Te Anau", "Timaru", "Twizel", "Wanaka", "Westport"]
 listNum = 1
+testing = false
 placesInOrder = []
 const distances= [
     [0,786,755,964,31,190,373,315,136,661,231,202,657,227,370,242,734,865,223,791,93,249,307,169,86,761],
@@ -34,12 +35,17 @@ const distances= [
     [86,745,424,839,55,276,287,286,222,469,145,285,607,198,394,211,715,587,231,733,117,273,273,140,0,558],
     [761,254,333,320,639,695,277,432,804,101,437,869,340,559,951,664,101,226,580,288,664,830,497,617,558,0],
 ]
+
+// adds a place useing the dropdown
+
 function addPlaceWithDropDown(){
     // gets the place selectid 
     number = document.getElementById("places").value
     // tells the add place function the number of the place it wants added
     addPlace(number)
 }
+
+// adds a place to the array and html
 
 function addPlace(number) {
     // tells the make tag function what name and img shuod be on the tag that is added to the listarea
@@ -50,6 +56,8 @@ function addPlace(number) {
     listNum += 1
 };
 
+// makes a tag and added it to the html
+
 function makeTag(place, photoLink) {
     // makes the html for the tag
     tag = "<div id=\""+listNum+"\"  class=\"item\"><img class=\"itemphoto\" src=\""+photoLink+"\" alt=\"\"><div class=\"name\"><p class=\"name\">"+place+"<a class=\"xbox\" onclick=\"removeTag("+listNum+")\" id=\"xbox"+listNum+"\">x</a></p></div>"
@@ -57,12 +65,16 @@ function makeTag(place, photoLink) {
     return tag
 };
 
+// removes the iteams from the array and html 
+
 function removeTag(position) {
     // uses the inpuied position to replace it with null so the id of the tag still match there position in the aray
     placesInOrder.splice((position-1), 1, null)
     // removes the html for the tag
     document.getElementById(position).outerHTML = ""
 };
+
+// resets everything to defults 
 
 function clearList() {
     // resets placesInOrder
@@ -75,13 +87,17 @@ function clearList() {
     listNum = 1
 };
 
+// closes the tab
+
 function quit() {
     // closes the tab
     window.close()
 };
 
+// removes the nulls from placesInOrder array
+
 function cleanPlacesInOrder() {
-    // makes a new array for the places without null
+    // makes a new array for puting the places without null
     placesInOrderFinal = []
     // makes a vareabule that has the orignal lenth of placesInOrder
     let items = placesInOrder.length
@@ -101,10 +117,9 @@ function cleanPlacesInOrder() {
     return placesInOrderFinal
 };
 
+// cals the dis of the places selected 
+
 function calFuelAndDis() {
-    fuelPerKm = Number(document.getElementById("fuelperkm").value)
-    priceOfFuel = Number(document.getElementById("priceoffuel").value)
-    document.getElementById("footertextarea").innerHTML = ""
     // asks for an array of placesInOrder with no nulls
     cleanedPlacesInOrder = cleanPlacesInOrder()
     cleanedPlacesInOrder.push(cleanedPlacesInOrder[0])
@@ -124,17 +139,39 @@ function calFuelAndDis() {
         dis = disSet[nPlace]
         // adds the distance to the total 
         distance += dis
-        // adds one to i
         i += 1
-        console.log(cPlace,nPlace,disSet,dis,distance)
     }
+    // this is so this doesnt run when testing with jasmine 
+    if (testing == false){
+        fuelandprice(distance)
+    }
+    // this is so jasmine can read the cal number
+    if (testing == true){
+        return distance
+    }
+};
+
+// cals the amount of fuel and the cost of the fuel
+
+function fuelandprice(distance){
+    // clears the footer text area
+    document.getElementById("footertextarea").innerHTML = ""
+    // gets the inputed number for fuelperkm
+    fuelPerKm = Number(document.getElementById("fuelperkm").value)
+    // gets the inputed number for price of fuel
+    priceOfFuel = Number(document.getElementById("priceoffuel").value)
+    // puts the distentce in the html
     document.getElementById("footertextarea").innerHTML += "<br/>the distance between the places given is "+distance+" km"
+    // makes sure distance is a number
     distance = Number(distance)
-    console.log(fuelPerKm,priceOfFuel)
+    // makes sure you aculay put a number for fuel per km
     if(fuelPerKm != 0){
+        // cals the amount of fuel you would need
         fuel = distance*fuelPerKm
         document.getElementById("footertextarea").innerHTML += "</br>the amount of fuel used is " +fuel+" liters"
+        // makes sure you aculay put a number for price of fuel
         if(priceOfFuel != 0){
+            // cals cost of fuel
             cost = fuel*priceOfFuel
             document.getElementById("footertextarea").innerHTML += "</br>the cost will be " +cost+" dollars"
         }
@@ -145,19 +182,23 @@ function calFuelAndDis() {
     else{
         alert("you need to enter a number for fuel uses per km for me to calulate it")
     }
-    // this is so jasmine can read the cal number
-    return distance
-};
+}
+
+// adds a box so you can enter a key to save it under
 
 function save(){
     input =  "<br/><label for=\"save/load\" id=\"inputlabel\">name your save</label><input type=\"text\" id=\"save/load\"><button id=\"save/loadbutton\" onclick=\"savePlaces()\">save</button>"
     document.getElementById("entry").innerHTML = input 
 };
 
+// adds a box so you can enter the key for your saved array of places
+
 function load(){
     input =  "<br/><label for=\"save/load\" id=\"inputlabel\">what is the name of your save</label><input type=\"text\" id=\"save/load\"><button id=\"save/loadbutton\" onclick=\"loadPlaces()\">load</button>"
     document.getElementById("entry").innerHTML = input 
 };
+
+// saves the places that have been selected
 
 function savePlaces(){
     key = document.getElementById("save/load").value
@@ -166,19 +207,25 @@ function savePlaces(){
     alert("saved")
 };
 
+// loads places baced on the inputed key
+
 function loadPlaces(){
     clearList()
     retrevedPlaces = retrivePlaces();
     i = 0;
     retrivePlaceslenth = retrevedPlaces.length
     while(i < retrivePlaceslenth) {
-        addPlace(retrevedPlaces[i],"../Static/img/external-deuhiufsguiyvgdsiufer.jpg",retrevedPlaces[i] )
+        if(distances.indexOf(distances[retrevedPlaces[i]]) != -1){
+            addPlace(retrevedPlaces[i],"../Static/img/external-deuhiufsguiyvgdsiufer.jpg",retrevedPlaces[i] )
+        }
         i += 1
     };
     console.log(retrevedPlaces)
     alert("loaded")
 
 };
+
+// gets the array of places out of storege 
 
 function retrivePlaces(){
     key = document.getElementById("save/load").value
