@@ -6,14 +6,13 @@
 describe("js working", function(){
     testing = true
     i = 0
-    placesInOrder = []
     while (i < 5){
-    it("shoud be able to cal dis as 0 if both places are the same" + i, function(){
+    it("shoud be able to cal dis as 0 if both places are the same " + i, function(){
         placesInOrder = [i,i]
         expect(calFuelAndDis()).toEqual(0)
         placesInOrder = []
     })
-    it("shoud be able to cal dis if they all go to place 1 from" + i, function(){
+    it("shoud be able to cal dis if they all go to place 1 from " + i, function(){
         placesInOrder = [1,i]
         expect(calFuelAndDis()).toEqual(((distances[i])[1])*2)
         placesInOrder = []
