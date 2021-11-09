@@ -21,34 +21,6 @@ h1,h2{
 }
 
 /*grid formating stuff*/
-
-.grid {
-    display: grid;
-    grid-template-columns: 50vh auto;
-    grid-template-rows: 5vw minmax(20vw, auto) auto;
-    grid-template-areas: 
-      'header header'
-      'leftbar main'
-      'footer footer';
-    column-gap: 5vh;
-    row-gap: 5vw;
-  }
-  
-  .page-header {
-    grid-area: header;
-  }
-  
-  .page-leftbar {
-    grid-area: leftbar;
-  }
-  
-  .page-main {
-    grid-area: main;
-  }
-  
-  .page-footer {
-    grid-area: footer;
-  }
   
   .content {
     color: #242424;
@@ -116,6 +88,7 @@ h1,h2{
 
   /* bootstrap upgrades*/
   #sidebar{
+    font-weight: 600;
     background-color: gray;
     text-align: center;
     box-sizing: border-box;
