@@ -95,6 +95,7 @@ h1,h2{
     font-size: 1rem;
     box-sizing: border-box;
     height: 2rem;
+    margin: 0.5rem;
   }
   .itemphoto{
     height: 2rem;
@@ -111,4 +112,19 @@ h1,h2{
   .name{
     border: 1rem;
     color: black;
+  }
+
+  /* bootstrap upgrades*/
+  #sidebar{
+    background-color: gray;
+    text-align: center;
+    box-sizing: border-box;
+    height: 100%;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin: 00.5rem;
+  }
+
+  #topbar{
+    background-color: gray;
   }
