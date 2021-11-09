@@ -2,11 +2,13 @@
  *  Author: jacob miller
  *  Last edited: 10/22/21 (mm/dd/yy)
  */
-
- const places = ['Alexandra', 'Blenheim', 'Christchurch', 'Collingwood', 'Cromwell', 'Dunedin', 'Franz Josef', 'Geraldine', 'Gore', 'Greymouth', 'Haast', 'Invercargill', 'Kaikoura', 'Lake Tekapo', 'Milford Sound', 'Mount Cook', 'Murchison', 'Nelson', 'Oamaru', 'Picton', 'Queenstown', 'Te Anau', 'Timaru', 'Twizel', 'Wanaka', 'Westport'];
+// keeps trak of the number of places added 
  listNum = 1;
- testing = false;
+ // makes an array to track what places are added and removed and in what order
  placesInOrder = [];
+ // keeps a list of the names of places in the same order as distances
+ const places = ['Alexandra', 'Blenheim', 'Christchurch', 'Collingwood', 'Cromwell', 'Dunedin', 'Franz Josef', 'Geraldine', 'Gore', 'Greymouth', 'Haast', 'Invercargill', 'Kaikoura', 'Lake Tekapo', 'Milford Sound', 'Mount Cook', 'Murchison', 'Nelson', 'Oamaru', 'Picton', 'Queenstown', 'Te Anau', 'Timaru', 'Twizel', 'Wanaka', 'Westport'];
+ // keeps distances between places in the same order as places
  const distances = [
    [0, 786, 755, 964, 31, 190, 373, 315, 136, 661, 231, 202, 657, 227, 370, 242, 734, 865, 223, 791, 93, 249, 307, 169, 86, 761],
    [786, 0, 308, 251, 733, 670, 486, 446, 821, 324, 643, 887, 129, 534, 1081, 639, 153, 116, 555, 28, 794, 960, 471, 592, 745, 254],
@@ -36,142 +38,106 @@
    [761, 254, 333, 320, 639, 695, 277, 432, 804, 101, 437, 869, 340, 559, 951, 664, 101, 226, 580, 288, 664, 830, 497, 617, 558, 0],
  ];
  
- // adds a place useing the dropdown
+ // adds a place using the item selected in the dropdown
  
  function addPlaceWithDropDown() {
-   // gets the place selectid
    number = document.getElementById('places').value;
-   // tells the add place function the number of the place it wants added
    addPlace(number);
  }
  
  // adds a place to the array and html
  
  function addPlace(number) {
-   // tells the make tag function what name and img shuod be on the tag that is added to the listarea
    document.getElementById('listarea').innerHTML += makeTag(places[number], 'https://via.placeholder.com/900x350');
-   // adds the number to the places in order array to keep trak of it
    placesInOrder.push(number);
-   // adds one to listNum so it keeps trak of the number of places that have bean added
    listNum += 1;
  }
  
- // makes a tag and added it to the html
+ // makes a tags html
  
  function makeTag(place, photoLink) {
-   // makes the html for the tag
    tag = `<div id="${listNum}"  class="item"><img class="itemphoto" src="${photoLink}" alt=""><div class="name"><p class="name">${place}<a class="xbox" onclick="removeTag(${listNum})" id="xbox${listNum}">x</a></p></div>`;
-   // gives the html to whoever reqestided it
    return tag;
  }
  
- // removes the iteams from the array and html
+ // removes the items from the array and html
  
  function removeTag(position) {
-   // uses the inpuied position to replace it with null so the id of the tag still match there position in the aray
    placesInOrder.splice((position - 1), 1, null);
-   // removes the html for the tag
    document.getElementById(position).outerHTML = '';
  }
  
- // resets everything to defults
+ // resets everything to defaults
  
  function clearList() {
-   // resets placesInOrder
    placesInOrder = [];
-   // clears the listArea
    document.getElementById('listarea').innerHTML = '';
-   // set the distance to 0
    distance = 0;
-   // resets listNum
    listNum = 1;
  }
  
  // closes the tab
  
  function quit() {
-   // closes the tab
    window.close();
  }
  
  // removes the nulls from placesInOrder array
  
  function cleanPlacesInOrder() {
-   // makes a new array for puting the places without null
    placesInOrderFinal = [];
-   // makes a vareabule that has the orignal lenth of placesInOrder
    const items = placesInOrder.length;
-   // makes i for iterating through a list of numbers
    i = 0;
+   // loops thought all the items in the placesInOrder array 
    while (items >= i) {
-     // makes a loop that will repeat an equle number of times to orignal lenth of placesInOrder
+     // adds all the items from placesInOrder to placesInOrderFinal as long as there not equal to null
      if (placesInOrder[i] != null) {
-       // checks if the ith iteam in placesInOrder is not qule to null
        placesInOrderFinal.push(placesInOrder[i]);
-       // if the ith iteam in placesInOrder is not qule to null adds it to the array placesInOrderFinal
      }
-     // add one to i so it moves thought all the items
      i += 1;
    }
-   // returns a array without any nulls in it
    return placesInOrderFinal;
  }
  
+ // puts the caldis and fuel and price together
+
+ function calFuelAndDis(){
+   dis = calDis();
+   fuelandprice(dis)
+ }
+
  // cals the dis of the places selected
  
- function calFuelAndDis() {
-   // asks for an array of placesInOrder with no nulls
+ function calDis() {
    cleanedPlacesInOrder = cleanPlacesInOrder();
    cleanedPlacesInOrder.push(cleanedPlacesInOrder[0]);
-   // makes i for iterating through a list of numbers
    i = 0;
-   // makes a distance var to keep trak of the total
    distance = 0;
-   // start a while loop to iterate through the places
+   // start a while loop to iterate through the places and calculate the dis between all of them and add it up
    while (i < (cleanedPlacesInOrder.length - 1)) {
-     // defs cPlace as the ith item in cleanedPlacesInOrder
      cPlace = cleanedPlacesInOrder[i];
-     // defs nPlace as the (i + 1)th item in cleanedPlacesInOrder
      nPlace = cleanedPlacesInOrder[(i + 1)];
-     // gets the ith place set of distances
      disSet = distances[cPlace];
-     // gets the (i+1)th place dis form the ith place set of distances
      dis = disSet[nPlace];
-     // adds the distance to the total
      distance += dis;
      i += 1;
    }
-   // this is so this doesnt run when testing with jasmine
-   if (testing == false) {
-     fuelandprice(distance);
-   }
-   // this is so jasmine can read the cal number
-   if (testing == true) {
-     return distance;
-   }
+    return distance;
  }
  
- // cals the amount of fuel and the cost of the fuel
- 
+ // cals the amount of fuel and the cost of the fuel and pushes it to the html
  function fuelandprice(distance) {
-   // clears the footer text area
    document.getElementById('footertextarea').innerHTML = '';
-   // gets the inputed number for fuelperkm
    fuelPerKm = Number(document.getElementById('fuelperkm').value);
-   // gets the inputed number for price of fuel
    priceOfFuel = Number(document.getElementById('priceoffuel').value);
-   // puts the distentce in the html
    document.getElementById('footertextarea').innerHTML += `<br/>the distance between the places given is ${distance} km`;
-   // makes sure distance is a number
    distance = Number(distance);
-   // makes sure you aculay put a number for fuel per km
+   // makes sure there is something for priceOfFuel and if not alerts you
    if (fuelPerKm != 0) {
-     // cals the amount of fuel you would need
      fuel = distance * fuelPerKm;
      document.getElementById('footertextarea').innerHTML += `</br>the amount of fuel used is ${fuel} liters`;
-     // makes sure you aculay put a number for price of fuel
+     // makes sure there is something for fuelPerKm and if not alerts you
      if (priceOfFuel != 0) {
-       // cals cost of fuel
        cost = fuel * priceOfFuel;
        document.getElementById('footertextarea').innerHTML += `</br>the cost will be ${cost} dollars`;
      } else {
@@ -205,14 +171,16 @@
    alert('saved');
  }
  
- // loads places baced on the inputed key
+ // loads places baced on the inputted key
  
  function loadPlaces() {
    clearList();
    retrevedPlaces = retrivePlaces();
    i = 0;
    retrivePlaceslenth = retrevedPlaces.length;
+   // iterates through all the places that were retrieved and adds them 
    while (i < retrivePlaceslenth) {
+     // makes sure places are on the list
      if (distances.indexOf(distances[retrevedPlaces[i]]) != -1) {
        addPlace(retrevedPlaces[i], '../Static/img/external-deuhiufsguiyvgdsiufer.jpg', retrevedPlaces[i]);
      }
