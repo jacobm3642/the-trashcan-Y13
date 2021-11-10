@@ -101,6 +101,8 @@
  
  // puts the caldis and fuel and price together
 
+ // i added this so fuelandprice weren't run by calDis
+
  function calFuelAndDis(){
    dis = calDis();
    fuelandprice(dis)
@@ -108,6 +110,8 @@
 
  // cals the dis of the places selected
  
+ // i refactored this code to remove fuelandprice stuff so it works with jasmine 
+
  function calDis() {
    cleanedPlacesInOrder = cleanPlacesInOrder();
    cleanedPlacesInOrder.push(cleanedPlacesInOrder[0]);
