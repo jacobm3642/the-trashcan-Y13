@@ -186,7 +186,7 @@
    while (i < retrivePlaceslenth) {
      // makes sure places are on the list
      if (distances.indexOf(distances[retrevedPlaces[i]]) != -1) {
-       addPlace(retrevedPlaces[i], '../Static/img/external-deuhiufsguiyvgdsiufer.jpg', retrevedPlaces[i]);
+       addPlace(retrevedPlaces[i]);
      }
      i += 1;
    }
