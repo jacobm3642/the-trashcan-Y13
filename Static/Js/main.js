@@ -89,7 +89,7 @@
    const items = placesInOrder.length;
    i = 0;
    // loops thought all the items in the placesInOrder array 
-   while (items >= i) {
+   while (i <= items) {
      // adds all the items from placesInOrder to placesInOrderFinal as long as there not equal to null
      if (placesInOrder[i] != null) {
        placesInOrderFinal.push(placesInOrder[i]);
