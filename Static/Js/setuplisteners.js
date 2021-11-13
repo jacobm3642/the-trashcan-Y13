@@ -31,4 +31,7 @@ document.getElementById("clearListButton").addEventListener('click', function(){
 document.getElementById("calFuelAndDisButton").addEventListener('click', function(){
     calFuelAndDis()
 });
+document.getElementById("color").addEventListener('click', function(){
+    changeTheme()
+});
 }
